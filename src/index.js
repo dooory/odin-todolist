@@ -11,6 +11,8 @@ const FolderSystem = (() => {
 	const setFolderAsDefault = (folder) => (folder._default = true);
 
 	const newFolder = (title, index) => {
+		let listPosition = index || folders.length;
+
 		let folder = {
 			id: crypto.randomUUID(),
 			title,
@@ -18,7 +20,8 @@ const FolderSystem = (() => {
 			delete: () => {
 				deleteFolder(folder.id);
 			},
-			fakeIndex: index || folders.length,
+			getListPosition: () => listPosition,
+			setListPosition: (position) => (listPosition = position),
 			_default: false,
 			setDefault: () => setFolderAsDefault(folder),
 		};
