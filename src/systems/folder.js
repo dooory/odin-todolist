@@ -77,7 +77,15 @@ export default (() => {
             return;
         }
 
+        for (let index = 0; index < folder.tasks.length; index++) {
+            const task = TaskSystem.getTaskById(folder.tasks[index]);
+
+            task.setFolderId(defaultFolderId);
+        }
+
         folders.splice(index, 1);
+
+        updateFolderTasks(TaskSystem.getAllTasks());
 
         return folders;
     };

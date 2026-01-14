@@ -21,6 +21,11 @@ export default (() => {
             delete: () => deleteTask(task.id),
             getFolderId: () => folderId,
             setFolderId: (newFolderId) => {
+                if (!FolderSystem.getFolderById(newFolderId)) {
+                    console.error(`No folder with id <${newFolderId}> found`);
+                    return;
+                }
+
                 folderId = newFolderId;
 
                 FolderSystem.updateFolderTasks(tasks);

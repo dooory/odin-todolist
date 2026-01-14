@@ -10,6 +10,5 @@ const newFolder = FolderSystem.newFolder("MyFolder");
 const task = TaskSystem.newTask("Title", newFolder.id);
 const otherTask = TaskSystem.newTask("Other");
 
-console.log(defaultFolder.tasks, newFolder.tasks);
-otherTask.setFolderId(newFolder.id);
-console.log(defaultFolder.tasks, newFolder.tasks);
+newFolder.delete();
+console.log(defaultFolder.tasks);
