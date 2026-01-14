@@ -30,7 +30,7 @@ export default (() => {
 
         for (let index = 0; index < tasks.length; index++) {
             const task = tasks[index];
-            const folderId = task.folder;
+            const folderId = task.getFolderId();
 
             let folder = getFolderById(folderId);
 
@@ -77,7 +77,7 @@ export default (() => {
             return;
         }
 
-        delete folders[index];
+        folders.splice(index, 1);
 
         return folders;
     };

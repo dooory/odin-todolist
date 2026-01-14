@@ -11,13 +11,20 @@ export default (() => {
     const newTask = (title, folderId, index) => {
         let listPosition = index || tasks.length;
 
+        folderId = folderId || FolderSystem.getDefaultFolderId();
+
         let task = {
             id: crypto.randomUUID(),
             title,
             getListPosition: () => listPosition,
             setListPosition: (position) => (listPosition = position),
             delete: () => deleteTask(task.id),
-            folder: folderId || FolderSystem.getDefaultFolderId(),
+            getFolderId: () => folderId,
+            setFolderId: (newFolderId) => {
+                folderId = newFolderId;
+
+                FolderSystem.updateFolderTasks(tasks);
+            },
         };
 
         tasks.push(task);
