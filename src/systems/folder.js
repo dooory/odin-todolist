@@ -60,12 +60,23 @@ export default (() => {
     };
 
     const deleteFolder = (id) => {
-        if (!getFolderById(id)) {
+        const folder = getFolderById(id);
+        const index = getFolderIndex(id);
+
+        if (!folder) {
             console.error(`No folder with id <${id}> found`);
             return;
         }
 
-        delete folders[getFolderIndex(id)];
+        if (folder.isDefault()) {
+            console.error(
+                `Unable to delete folder <${id}>, as it is the default folder`
+            );
+
+            return;
+        }
+
+        delete folders[index];
 
         return folders;
     };

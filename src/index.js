@@ -4,9 +4,9 @@ import TaskSystem from "./systems/task";
 
 const defaultFolder = FolderSystem.newFolder("Default");
 defaultFolder.setDefault();
+defaultFolder.delete();
 
 const newFolder = FolderSystem.newFolder("MyFolder");
 
 const task = TaskSystem.newTask("Title", newFolder.id);
-
-console.log(newFolder);
+const otherTask = TaskSystem.newTask("Other");
