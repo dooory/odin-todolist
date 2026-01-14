@@ -3,16 +3,19 @@ import TaskSystem from "./task";
 export default (() => {
     let folders = [];
     let defaultFolder;
+    let defaultFolderId;
 
     const getAllFolders = () => folders;
     const getFolderById = (id) => folders.find((element) => element.id === id);
     const getFolderIndex = (id) =>
         folders.findIndex((element) => element.id === id);
     const getDefaultFolder = () => defaultFolder || folders[0];
+    const getDefaultFolderId = () => defaultFolderId || folders[0].id;
 
     const setFolderAsDefault = (folder) => {
         folder._default = true;
         defaultFolder = folder;
+        defaultFolderId = folder.id;
     };
 
     const newFolder = (title, index) => {
@@ -52,5 +55,6 @@ export default (() => {
         getAllFolders,
         getFolderById,
         getDefaultFolder,
+        getDefaultFolderId,
     };
 })();

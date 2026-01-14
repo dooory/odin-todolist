@@ -8,7 +8,7 @@ export default (() => {
     const getTaskIndex = (id) =>
         tasks.findIndex((element) => element.id === id);
 
-    const newTask = (title, folder, index) => {
+    const newTask = (title, folderId, index) => {
         let listPosition = index || tasks.length;
 
         let task = {
@@ -17,7 +17,7 @@ export default (() => {
             getListPosition: () => listPosition,
             setListPosition: (position) => (listPosition = position),
             delete: () => deleteTask(task.id),
-            folder: folder || FolderSystem.getDefaultFolder(),
+            folder: folderId || FolderSystem.getDefaultFolderId(),
         };
 
         tasks.push(task);

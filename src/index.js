@@ -7,6 +7,6 @@ defaultFolder.setDefault();
 
 const newFolder = FolderSystem.newFolder("MyFolder");
 
-const task = TaskSystem.newTask("Title", newFolder);
+const task = TaskSystem.newTask("Title", newFolder.id);
 
 console.log(newFolder);
