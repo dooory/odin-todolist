@@ -2,13 +2,18 @@ import "./style.css";
 
 const FolderSystem = (() => {
 	let folders = [];
+	let defaultFolder;
 
 	const getAllFolders = () => folders;
 	const getFolderById = (id) => folders.find((element) => element.id === id);
 	const getFolderIndex = (id) =>
 		folders.findIndex((element) => element.id === id);
+	const getDefaultFolder = () => defaultFolder || folders[0];
 
-	const setFolderAsDefault = (folder) => (folder._default = true);
+	const setFolderAsDefault = (folder) => {
+		folder._default = true;
+		defaultFolder = folder;
+	};
 
 	const newFolder = (title, index) => {
 		let listPosition = index || folders.length;
