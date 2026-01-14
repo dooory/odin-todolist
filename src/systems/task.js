@@ -22,6 +22,8 @@ export default (() => {
 
         tasks.push(task);
 
+        FolderSystem.updateFolderTasks(tasks);
+
         return task;
     };
 

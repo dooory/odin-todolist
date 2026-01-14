@@ -18,6 +18,26 @@ export default (() => {
         defaultFolderId = folder.id;
     };
 
+    const clearFolderTasks = () => {
+        for (let index = 0; index < folders.length; index++) {
+            let folder = folders[index];
+            folder.tasks = [];
+        }
+    };
+
+    const updateFolderTasks = (tasks) => {
+        clearFolderTasks();
+
+        for (let index = 0; index < tasks.length; index++) {
+            const task = tasks[index];
+            const folderId = task.folder;
+
+            let folder = getFolderById(folderId);
+
+            folder.tasks.push(task.id);
+        }
+    };
+
     const newFolder = (title, index) => {
         let listPosition = index || folders.length;
 
