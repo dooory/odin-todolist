@@ -88,5 +88,6 @@ export default (() => {
         getFolderById,
         getDefaultFolder,
         getDefaultFolderId,
+        updateFolderTasks,
     };
 })();
