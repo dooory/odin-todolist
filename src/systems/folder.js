@@ -1,3 +1,5 @@
+import TaskSystem from "./task";
+
 export default (() => {
     let folders = [];
     let defaultFolder;

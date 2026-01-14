@@ -1,10 +1,12 @@
 import "./style.css";
-import FolderSystem from "@systems/folder.js";
-import TaskSystem from "@systems/task.js";
+import FolderSystem from "./systems/folder";
+import TaskSystem from "./systems/task";
 
-const folder = FolderSystem.newFolder("Default");
-folder.setDefault();
+const defaultFolder = FolderSystem.newFolder("Default");
+defaultFolder.setDefault();
 
-const task = TaskSystem.newTask("Title");
+const newFolder = FolderSystem.newFolder("MyFolder");
 
-console.log(TaskSystem.getAllTasks());
+const task = TaskSystem.newTask("Title", newFolder);
+
+console.log(newFolder);

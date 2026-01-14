@@ -1,4 +1,4 @@
-import FolderSystem from "@systems/folder";
+import FolderSystem from "./folder";
 
 export default (() => {
     let tasks = [];
