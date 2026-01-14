@@ -51,6 +51,7 @@ export default (() => {
             getListPosition: () => listPosition,
             setListPosition: (position) => (listPosition = position),
             _default: false,
+            isDefault: () => folder._default,
             setDefault: () => setFolderAsDefault(folder),
         };
 
