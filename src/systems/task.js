@@ -33,7 +33,8 @@ export default (() => {
             return;
         }
 
-        delete tasks[getTaskIndex(id)];
+        tasks.splice(getTaskIndex(id), 1);
+        FolderSystem.updateFolderTasks(tasks);
 
         return tasks;
     };
