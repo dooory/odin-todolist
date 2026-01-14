@@ -19,7 +19,7 @@ export default (() => {
         let folder = {
             id: crypto.randomUUID(),
             title,
-            tasks: {},
+            tasks: [],
             delete: () => {
                 deleteFolder(folder.id);
             },
