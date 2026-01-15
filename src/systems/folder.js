@@ -42,12 +42,14 @@ export default (() => {
         let listPosition = index || folders.length;
         let defaultFolder = false;
         let id = crypto.randomUUID();
+        let favorite = false;
 
         let folder = {
             getId: () => id,
             getTitle: () => title,
             getListPosition: () => listPosition,
             isDefault: () => defaultFolder,
+            isFavorite: () => favorite,
 
             tasks: [],
 
@@ -57,6 +59,7 @@ export default (() => {
                 defaultFolder = true;
                 setFolderAsDefault(folder);
             },
+            setFavorite: (isFavorite) => favorite,
 
             delete: () => {
                 deleteFolder(id);

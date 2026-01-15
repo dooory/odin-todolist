@@ -17,6 +17,7 @@ export default (() => {
 
         let id = crypto.randomUUID();
         let completed = false;
+        let favorite = false;
 
         let task = {
             getId: () => id,
@@ -26,7 +27,9 @@ export default (() => {
             getPriority: () => priority,
             getDueDate: () => dueDate,
             isCompleted: () => completed,
+            isFavorite: () => favorite,
 
+            setFavorite: (isFavorite) => favorite,
             setCompleted: (isCompleted) => {
                 if (typeof isCompleted !== "boolean") {
                     console.error(

@@ -16,5 +16,5 @@ const task = TaskSystem.newTask(
 );
 const otherTask = TaskSystem.newTask("Other", add(new Date(), { days: 14 }), 1);
 
-otherTask.setCompleted(true);
-console.log(otherTask.isCompleted());
+otherTask.setFavorite(true);
+console.log(otherTask.isFavorite());
