@@ -8,7 +8,7 @@ export default (() => {
     const getTaskIndex = (id) =>
         tasks.findIndex((element) => element.getId() === id);
 
-    const newTask = (title, folderId, index) => {
+    const newTask = (title, priority, folderId, index) => {
         let listPosition = index || tasks.length;
 
         folderId =
@@ -22,7 +22,11 @@ export default (() => {
             getTitle: () => title,
             getListPosition: () => listPosition,
             getFolderId: () => folderId,
+            getPriority: () => priority,
 
+            setPriority: (newPriority) => {
+                priority = newPriority;
+            },
             setTitle: (newTitle) => (title = newTitle),
             setListPosition: (position) => (listPosition = position),
             setFolderId: (newFolderId) => {

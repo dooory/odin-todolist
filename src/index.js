@@ -7,8 +7,8 @@ defaultFolder.setDefault();
 
 const newFolder = FolderSystem.newFolder("MyFolder");
 
-const task = TaskSystem.newTask("Title", newFolder.getId());
-const otherTask = TaskSystem.newTask("Other");
+const task = TaskSystem.newTask("Title", 1, newFolder.getId());
+const otherTask = TaskSystem.newTask("Other", 1);
 
-console.log(defaultFolder.tasks);
+console.log(otherTask.getPriority());
 newFolder.delete();
