@@ -1,4 +1,5 @@
 import "./style.css";
+import { add } from "date-fns";
 import FolderSystem from "./systems/folder";
 import TaskSystem from "./systems/task";
 
@@ -7,8 +8,12 @@ defaultFolder.setDefault();
 
 const newFolder = FolderSystem.newFolder("MyFolder");
 
-const task = TaskSystem.newTask("Title", 1, newFolder.getId());
-const otherTask = TaskSystem.newTask("Other", 1);
+const task = TaskSystem.newTask(
+    "Title",
+    add(new Date(), { days: 10 }),
+    1,
+    newFolder.getId()
+);
+const otherTask = TaskSystem.newTask("Other", add(new Date(), { days: 14 }), 1);
 
-console.log(otherTask.getPriority());
-newFolder.delete();
+console.log(task.getDueDate());
