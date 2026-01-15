@@ -6,16 +6,16 @@ export default (() => {
     let defaultFolderId;
 
     const getAllFolders = () => folders;
-    const getFolderById = (id) => folders.find((element) => element.id === id);
+    const getFolderById = (id) =>
+        folders.find((element) => element.getId() === id);
     const getFolderIndex = (id) =>
-        folders.findIndex((element) => element.id === id);
+        folders.findIndex((element) => element.getId() === id);
     const getDefaultFolder = () => defaultFolder || folders[0];
-    const getDefaultFolderId = () => defaultFolderId || folders[0].id;
+    const getDefaultFolderId = () => defaultFolderId || folders[0].getId();
 
     const setFolderAsDefault = (folder) => {
-        folder._default = true;
         defaultFolder = folder;
-        defaultFolderId = folder.id;
+        defaultFolderId = folder.getId();
     };
 
     const clearFolderTasks = () => {
@@ -34,25 +34,33 @@ export default (() => {
 
             let folder = getFolderById(folderId);
 
-            folder.tasks.push(task.id);
+            folder.tasks.push(task.getId());
         }
     };
 
     const newFolder = (title, index) => {
         let listPosition = index || folders.length;
+        let defaultFolder = false;
+        let id = crypto.randomUUID();
 
         let folder = {
-            id: crypto.randomUUID(),
-            title,
-            tasks: [],
-            delete: () => {
-                deleteFolder(folder.id);
-            },
+            getId: () => id,
+            getTitle: () => title,
             getListPosition: () => listPosition,
+            isDefault: () => defaultFolder,
+
+            tasks: [],
+
+            setTitle: (newTitle) => (title = newTitle),
             setListPosition: (position) => (listPosition = position),
-            _default: false,
-            isDefault: () => folder._default,
-            setDefault: () => setFolderAsDefault(folder),
+            setDefault: () => {
+                defaultFolder = true;
+                setFolderAsDefault(folder);
+            },
+
+            delete: () => {
+                deleteFolder(id);
+            },
         };
 
         folders.push(folder);

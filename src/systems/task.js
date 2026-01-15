@@ -4,22 +4,27 @@ export default (() => {
     let tasks = [];
 
     const getAllTasks = () => tasks;
-    const getTaskById = (id) => tasks.find((element) => element.id === id);
+    const getTaskById = (id) => tasks.find((element) => element.getId() === id);
     const getTaskIndex = (id) =>
-        tasks.findIndex((element) => element.id === id);
+        tasks.findIndex((element) => element.getId() === id);
 
     const newTask = (title, folderId, index) => {
         let listPosition = index || tasks.length;
 
-        folderId = folderId || FolderSystem.getDefaultFolderId();
+        folderId =
+            (FolderSystem.getFolderById(folderId) && folderId) ||
+            FolderSystem.getDefaultFolderId();
+
+        let id = crypto.randomUUID();
 
         let task = {
-            id: crypto.randomUUID(),
-            title,
+            getId: () => id,
+            getTitle: () => title,
             getListPosition: () => listPosition,
-            setListPosition: (position) => (listPosition = position),
-            delete: () => deleteTask(task.id),
             getFolderId: () => folderId,
+
+            setTitle: (newTitle) => (title = newTitle),
+            setListPosition: (position) => (listPosition = position),
             setFolderId: (newFolderId) => {
                 if (!FolderSystem.getFolderById(newFolderId)) {
                     console.error(`No folder with id <${newFolderId}> found`);
@@ -30,6 +35,8 @@ export default (() => {
 
                 FolderSystem.updateFolderTasks(tasks);
             },
+
+            delete: () => deleteTask(task.id),
         };
 
         tasks.push(task);
