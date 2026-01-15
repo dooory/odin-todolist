@@ -16,4 +16,5 @@ const task = TaskSystem.newTask(
 );
 const otherTask = TaskSystem.newTask("Other", add(new Date(), { days: 14 }), 1);
 
-console.log(task.getDueDate());
+otherTask.setCompleted(true);
+console.log(otherTask.isCompleted());

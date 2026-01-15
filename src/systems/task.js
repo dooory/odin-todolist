@@ -16,6 +16,7 @@ export default (() => {
             FolderSystem.getDefaultFolderId();
 
         let id = crypto.randomUUID();
+        let completed = false;
 
         let task = {
             getId: () => id,
@@ -24,7 +25,19 @@ export default (() => {
             getFolderId: () => folderId,
             getPriority: () => priority,
             getDueDate: () => dueDate,
+            isCompleted: () => completed,
 
+            setCompleted: (isCompleted) => {
+                if (typeof isCompleted !== "boolean") {
+                    console.error(
+                        `Expected type <boolean> not type ${typeof isCompleted} for completed variable`
+                    );
+
+                    return;
+                }
+
+                completed = isCompleted;
+            },
             setDueDate: (newDate) => {
                 dueDate = newDate;
             },
